@@ -2354,6 +2354,11 @@ queue@6.0.2:
   dependencies:
     inherits "~2.0.3"
 
+radio-browser-api@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/radio-browser-api/-/radio-browser-api-5.0.0.tgz#e7acee9d34206b59698429d4aa0c24f89c63ff33"
+  integrity sha512-j2lkbK8+IBMxMNjcSk5VYpagml56FtK6Z4xvuhXO3bSikPOYic1QBr9bez7Koovh8zWNxXctuvFGY5cKi0RI4A==
+
 randombytes@^2.0.0, randombytes@^2.0.1, randombytes@^2.0.5:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/randombytes/-/randombytes-2.1.0.tgz#df6f84372f0270dc65cdf6291349ab7a473d4f2a"
