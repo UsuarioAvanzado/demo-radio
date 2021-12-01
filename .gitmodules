@@ -1,0 +1,3 @@
+[submodule "radiobrowser-api-rust"]
+	path = radiobrowser-api-rust
+	url = git@github.com:segler-alex/radiobrowser-api-rust.git
