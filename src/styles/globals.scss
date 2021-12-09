@@ -1,0 +1,12 @@
+@use "utils/constants";
+@use "utils/coloschema";
+
+
+@include coloschema.register(constants.$dark_theme);
+@include coloschema.register(constants.$light_theme);
+
+* {
+  box-sizing: border-box;
+}
+
+

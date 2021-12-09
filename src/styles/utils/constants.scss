@@ -1,0 +1,27 @@
+$-color: (
+  "dark": #262626,
+  "light": #F7F5FB,
+  "orange": #FF980B,
+  "green": #32746D,
+  "red": #FB4851,
+);
+
+$light_theme: (
+  "name": "light-mode",
+  "header": map-get($-color, "green"),
+  "content": map-get($-color, "dark"),
+  "link": map-get($-color, "green"),
+  "acent": map-get($-color, "green"),
+  "icon": map-get($-color, "green"),
+  "background": map-get($-color, "light"),
+);
+
+$dark_theme: (
+  "name": "dark-mode",
+  "header": map-get($-color, "orange"),
+  "content": map-get($-color, "light"),
+  "link": map-get($-color, "orange"),
+  "acent": map-get($-color, "orange"),
+  "icon": map-get($-color, "orange"),
+  "background": map-get($-color, "dark"),
+);

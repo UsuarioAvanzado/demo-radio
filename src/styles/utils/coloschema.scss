@@ -1,0 +1,28 @@
+@mixin register($map){
+  $name: map-get($map,'name');
+  $header: map-get($map, 'header');
+  $content : map-get($map, 'content');
+  $link: map-get($map, 'link');
+  $acent: map-get($map, 'acent');
+  $icon:  map-get($map, 'icon');
+  $background : map-get($map, 'background');
+
+  .colorschema--#{$name}{
+    background-color: $background;
+    .header{
+      color:  $header;
+    }
+    .content{
+      color: $content;
+    }
+    .link {
+      color: $link;
+    }
+    .acent {
+      color: $acent;
+    }
+    .icon  {
+      color: $icon;
+    }
+  }
+}
