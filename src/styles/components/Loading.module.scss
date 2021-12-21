@@ -1,0 +1,14 @@
+.container {
+  min-height: 100vh;
+  height: 100%;
+  width: 100%;
+  background-color: #222;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.text {
+  color: #fff;
+  font-size: 35px;
+}
