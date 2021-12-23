@@ -1,0 +1,40 @@
+@use "../utils/debug" as *;
+
+$-phone: "(max-width: 767px)";
+$-tablet: "(min-width: 768px) and (max-width: 1023px)";
+$-desktop: "(min-width: 1024px)";
+
+@mixin phone {
+  @media #{$-phone} {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media #{$-tablet} {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media #{$-desktop} {
+    @content;
+  }
+}
+
+
+@mixin assignArea($area, $target: false) {
+  @if $target {
+    .#{$target} {
+      grid-area: $area;
+    }
+  }
+  @else {
+    .#{$area} {
+      grid-area: $area;
+    }
+  }
+
+}
+
+
