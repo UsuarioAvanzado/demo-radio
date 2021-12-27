@@ -1,4 +1,4 @@
-@mixin debug ($debug:true, $size:1px, $color:red) {
+@mixin border ($debug:true, $size:1px, $color:red) {
   @if $debug {
     border: $size dashed $color !important;
   }
