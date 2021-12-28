@@ -1,0 +1,60 @@
+@use "debug";
+@use "layout";
+
+@mixin wrapper {
+  display: grid;
+  width: 200px;
+  height: 300px;
+  grid-template-columns: 1fr;
+  grid-template-rows: 200px 1fr;
+  grid-template-areas:  "control" "info";
+  @include debug.border();
+  .info {
+    grid-area: info;
+    span {
+      overflow: hidden;
+      word-wrap: break-word;
+      border: 1px solid green;
+    }
+  }
+  .control {
+    grid-area: control;
+  }
+
+}
+@include layout.phone {
+  .wrapper {
+    @include wrapper;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//@include media.tablet {
+  //.container {
+  //}
+//}
+
+//@include media.desktop {
+  //.container {
+  //}
+//}
