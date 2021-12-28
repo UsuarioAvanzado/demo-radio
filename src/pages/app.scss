@@ -1,0 +1,11 @@
+@use "constants";
+@use "coloschema";
+
+* {
+  box-sizing: border-box;
+}
+
+@include coloschema.register(constants.$dark_theme);
+@include coloschema.register(constants.$light_theme);
+
+
