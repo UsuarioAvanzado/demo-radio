@@ -1,4 +1,4 @@
-import  styles  from "@/styles/components/Loading.module.scss";
+import  styles  from "./style.module.scss";
 
 interface Props {
   msg?: string
