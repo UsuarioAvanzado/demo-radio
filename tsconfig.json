@@ -16,9 +16,9 @@
     "incremental": true,
     "baseUrl": ".",
     "paths": {
-      "@/components": ["src/components/index.tsx"],
-      "@/helpers": ["src/helpers/typescript/index.ts"],
-      "@/styles/*": ["src/styles/components/*"]
+      "@components": ["src/components"],
+      "@helpers": ["src/helpers"],
+      "@hooks": ["src/hooks"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
