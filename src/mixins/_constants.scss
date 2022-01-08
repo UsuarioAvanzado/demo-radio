@@ -7,7 +7,7 @@ $-color: (
 );
 
 $light_theme: (
-  "name": "light-mode",
+  "name": "light",
   "header": map-get($-color, "green"),
   "content": map-get($-color, "dark"),
   "link": map-get($-color, "green"),
@@ -17,7 +17,7 @@ $light_theme: (
 );
 
 $dark_theme: (
-  "name": "dark-mode",
+  "name": "dark",
   "header": map-get($-color, "orange"),
   "content": map-get($-color, "light"),
   "link": map-get($-color, "orange"),

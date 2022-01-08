@@ -7,8 +7,11 @@
   $icon:  map-get($map, 'icon');
   $background : map-get($map, 'background');
 
-  .colorschema--#{$name}{
+  .color-schema--#{$name}{
     background-color: $background;
+    .block {
+      background-color: $background;
+    }
     .header{
       color:  $header;
     }
