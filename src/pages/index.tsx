@@ -1,25 +1,52 @@
-import type { NextPage } from 'next'
-import Head from 'next/head'
-import styles from '@/styles/Home.module.scss'
+import type { NextPage } from 'next' 
+import type { Station } from 'radio-browser-api'
+import { useState, useEffect } from "react"
+import { StationBlock, Loading, Head, ColorSchema } from "@components"
+import style from './style.module.scss'
+import { useStream, useStoreState } from "@hooks";
+import { colorSchemaSelector } from "@store";
+
 
 
 const Home: NextPage = () => {
+  const colorSchema = useStoreState(colorSchemaSelector)
+  const { response, error } = useStream()
+  const [ data, setData ] = useState<Station[]>()
+  
+
+  useEffect(() => { 
+    setTimeout(() =>  setData(response) , 3000)
+  },[response])
+
+
+
+  if (error) return <Loading msg="Failed to load."/>
+  if (!data) return <Loading msg="Loading ..."/>
+
+  
   return (
-    <div className={styles.container}>
-      <Head>
-        <title>Open radio</title>
-        <meta name="description" content="Frontend demo using radio-browser API " />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+    <div className={`${style.wrapper} color-schema--${colorSchema}`}>
+      <Head/>
 
-      <main className={styles.main}>
-          Main page
-      </main>
+      <header className={`block ${style.header}`}>
+        <h1>Open Radio</h1>
+      </header>
 
-      <footer className={styles.footer}>
-      </footer>
+      <nav className={`${style.menu}`}>menu</nav>
+      <section className={`block ${style.favorites}`}>favoritos</section>
+      <section className={`block ${style.stations}`}>
+        { data.map((station: Station) => <StationBlock  key={station.id} {...station}/> )}
+      </section>
+
+      <section className={`block ${style.player}`}>
+        <ColorSchema/>
+      </section>
+
+      <footer className={`block ${style.footer}`}>footer</footer>
+
     </div>
   )
 }
+
 
 export default Home

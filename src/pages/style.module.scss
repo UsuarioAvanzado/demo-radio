@@ -1,0 +1,53 @@
+@use "layout";
+@use "debug";
+
+@mixin wrapper {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 300px auto auto 200px 100px;
+  grid-template-areas: "header" "favorites" "stations" "footer" "player";
+
+  .header{ grid-area: header }
+  .favorites { grid-area: favorites }
+  .stations { grid-area: stations }
+  .footer { grid-area: footer }
+  .player {
+    grid-area: player;
+    @include debug.border();
+  }
+}
+
+@mixin stations {
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: space-around;
+   gap: 30px ;
+}
+
+@include layout.phone {
+  .wrapper {
+    @include wrapper;
+  }
+  .stations {
+    @include stations;
+  }
+  .player {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 100px;
+  }
+  .menu {
+    position: fixed;
+    width: 100%;
+    height: calc(100vh - 180px);
+    top: 80px;
+    background-color: red;
+  }
+  .footer{
+    @include debug.border($color: green);
+  }
+}
+
+
+
