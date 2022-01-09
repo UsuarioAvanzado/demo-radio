@@ -37,13 +37,6 @@
     width: 100%;
     height: 100px;
   }
-  .menu {
-    position: fixed;
-    width: 100%;
-    height: calc(100vh - 180px);
-    top: 80px;
-    background-color: red;
-  }
   .footer{
     @include debug.border($color: green);
   }

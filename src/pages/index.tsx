@@ -1,7 +1,7 @@
 import type { NextPage } from 'next' 
 import type { Station } from 'radio-browser-api'
 import { useState, useEffect } from "react"
-import { StationBlock, Loading, Head, ColorSchema } from "@components"
+import { StationBlock, Loading, Head, ColorSchema, Navbar } from "@components"
 import style from './style.module.scss'
 import { useStream, useStoreState } from "@hooks";
 import { colorSchemaSelector } from "@store";
@@ -31,15 +31,15 @@ const Home: NextPage = () => {
       <header className={`block ${style.header}`}>
         <h1>Open Radio</h1>
       </header>
+      <Navbar/>
 
-      <nav className={`${style.menu}`}>menu</nav>
       <section className={`block ${style.favorites}`}>favoritos</section>
       <section className={`block ${style.stations}`}>
         { data.map((station: Station) => <StationBlock  key={station.id} {...station}/> )}
       </section>
 
       <section className={`block ${style.player}`}>
-        <ColorSchema/>
+        panel de control
       </section>
 
       <footer className={`block ${style.footer}`}>footer</footer>

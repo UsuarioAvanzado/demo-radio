@@ -1,0 +1,64 @@
+@use "layout";
+@use "debug";
+
+$size: 100px;
+
+@mixin -phone {
+  .expand, .collapse {
+    position: fixed;
+    z-index: 500;
+  }
+  .icon {
+    font-size: 30px;
+    grid-area: icon;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .colorSchema {
+    grid-area: colorSchema;
+  }
+  .items {
+    grid-area: items;
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: repeat(auto);
+    
+    li {
+      min-height: 100px;
+      height: auto;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+  .collapse {
+    height: $size;
+    width: 100%;
+    display: grid;
+    grid-template-columns: $size auto $size;
+    grid-template-rows: $size;
+    grid-template-areas: "colorSchema . icon";
+  }
+  .expand {
+    height: 100%;
+    width: 100%;
+    display: grid;
+    grid-template-columns: $size auto $size;
+    grid-template-rows: $size auto;
+    grid-template-areas: "colorSchema . icon" "items items items";
+  }
+}
+
+@include layout.phone {
+  @include -phone;
+}
+@include layout.tablet {
+  @include -phone;
+}
+@include layout.desktop {
+  @include -phone;
+}
