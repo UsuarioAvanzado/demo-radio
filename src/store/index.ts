@@ -2,12 +2,20 @@ import { createStore } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly';
 
 import { reducers } from './reducers';
-export { colorSchemaAction } from './actions';
+
 
 export const store = createStore(reducers, composeWithDevTools());
+
 
 export type StoreState = ReturnType<typeof store.getState>
 export type StoreDispatch = typeof store.dispatch
 
-export const colorSchemaSelector = (state: StoreState) => state.colorSchema
 
+export type { MediaPlayerState } from './reducers'
+
+const colorSchema = (state: StoreState) => state.colorSchema.theme
+const mediaPlayer = (state: StoreState) => state.mediaPlayer
+export const selectors = {
+ colorSchema: colorSchema,
+ mediaPlayer: mediaPlayer
+}
