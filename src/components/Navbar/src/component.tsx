@@ -1,36 +1,36 @@
 import styles from "./style.module.scss";
 import { useState } from "react";
-import { useStoreState } from "@hooks";
-import { colorSchemaSelector } from "@store";
 
-import { ColorSchema } from "@components";
+import { ColorSchemaSwitch } from "@components";
 
 
 export function Component(){
   const [ state, setState ] = useState("collapse");
-  const colorSchema = " color-schema--" + useStoreState(colorSchemaSelector)
-  const collapse = styles.collapse.concat(colorSchema)
-  const expand = styles.expand.concat(colorSchema)
-  const collapse_icon = styles.icon.concat(" icon icon-collapse")
-  const expand_icon = styles.icon.concat(" icon icon-expand")
 
-  if (state == "collapse"){
-      return (
-        <nav className={collapse}>
-          <span className={collapse_icon} onClick={()=> setState("expand")}></span>
-          <div className={styles.colorSchema}>
-            <ColorSchema/>
+  if (state === 'collapse'){
+    return (
+      <nav className={`${styles.collapse} block `}>
+        <span className={`${styles.icon} icon icon-collapse`} onClick={()=> setState("expand")}></span>
+          <div className={styles.colorSchemaSwitch}>
+            <ColorSchemaSwitch/>
           </div>
-        </nav>
+      </nav>
     )
   }
-  return(
-    <nav className={expand}>
-      <span className={expand_icon} onClick={()=> setState("collapse")}></span>
-      <div className={styles.colorSchema}><ColorSchema/></div>
-      <ul className={styles.items}>
-        <li><a href="">about</a></li>
-      </ul>
-    </nav>
+  else {
+    return(
+      <nav className={`${styles.expand} block`}>
+        <span className={`${styles.icon} icon icon-expand`} onClick={()=> setState("collapse")}></span>
+        <div className={styles.colorSchemaSwitch}>
+          <ColorSchemaSwitch/>
+        </div>
+        <ul className={styles.items}>
+          <li><a href="" className="content link">Menu item 1</a></li>
+          <li><a href="" className="content link">Menu item 2</a></li>
+          <li><a href="" className="content link">Menu item 3</a></li>
+          <li><a href="" className="content link">Menu item 4</a></li>
+        </ul>
+      </nav>
     )
+  }
 }

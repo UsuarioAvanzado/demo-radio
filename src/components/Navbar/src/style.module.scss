@@ -1,8 +1,6 @@
 @use "layout";
 @use "debug";
 
-$size: 100px;
-
 @mixin -phone {
   .expand, .collapse {
     position: fixed;
@@ -17,8 +15,8 @@ $size: 100px;
     justify-content: center;
     align-items: center;
   }
-  .colorSchema {
-    grid-area: colorSchema;
+  .colorSchemaSwitch {
+    grid-area: colorSchemaSwitch;
   }
   .items {
     grid-area: items;
@@ -33,23 +31,26 @@ $size: 100px;
       display: flex;
       justify-content: center;
       align-items: center;
+      a {
+        text-decoration: none;
+      }
     }
   }
   .collapse {
-    height: $size;
+    height: 100px;
     width: 100%;
     display: grid;
-    grid-template-columns: $size auto $size;
-    grid-template-rows: $size;
-    grid-template-areas: "colorSchema . icon";
+    grid-template-columns: 100px auto 100px;
+    grid-template-rows: 100px;
+    grid-template-areas: "colorSchemaSwitch . icon";
   }
   .expand {
     height: 100%;
     width: 100%;
     display: grid;
-    grid-template-columns: $size auto $size;
-    grid-template-rows: $size auto;
-    grid-template-areas: "colorSchema . icon" "items items items";
+    grid-template-columns: 100px auto 100px;
+    grid-template-rows: 100px auto;
+    grid-template-areas: "colorSchemaSwitch . icon" "items items items";
   }
 }
 
