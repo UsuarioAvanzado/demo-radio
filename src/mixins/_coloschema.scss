@@ -6,11 +6,14 @@
   $acent: map-get($map, 'acent');
   $icon:  map-get($map, 'icon');
   $background : map-get($map, 'background');
+  $background-: map-get($map, 'background-');
 
   .color-schema--#{$name}{
-    background-color: $background;
     .block {
       background-color: $background;
+    }
+    .block-reverse {
+      background-color: $background-;
     }
     .header{
       color:  $header;
@@ -26,6 +29,10 @@
     }
     .icon  {
       color: $icon;
+      cursor: pointer;
+    }
+    .shadow {
+      box-shadow: 1px 3px 4px  #222;
     }
   }
 }
