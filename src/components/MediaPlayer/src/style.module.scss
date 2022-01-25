@@ -1,0 +1,33 @@
+.wrapper {
+  position: fixed;
+  bottom: 0;
+  height: 100px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 100px auto 100px;
+  grid-template-rows: 1fr;
+  grid-template-areas: "image info toggle";
+
+  .image { grid-area: image }
+  .info { grid-area: info }
+  .toggle { grid-area: toggle }
+  .image, .info, .toggle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .toggle {
+    cursor: pointer;
+  }
+  .image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    img {
+      width: 100%;
+    }
+  }
+
+}
