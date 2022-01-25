@@ -4,6 +4,7 @@ $-color: (
   "orange": #FF980B,
   "green": #32746D,
   "red": #FB4851,
+  "reverse": #323232
 );
 
 $light_theme: (
@@ -14,6 +15,7 @@ $light_theme: (
   "acent": map-get($-color, "green"),
   "icon": map-get($-color, "green"),
   "background": map-get($-color, "light"),
+  "background-": map-get($-color, "reverse"),
 );
 
 $dark_theme: (
@@ -24,4 +26,5 @@ $dark_theme: (
   "acent": map-get($-color, "orange"),
   "icon": map-get($-color, "orange"),
   "background": map-get($-color, "dark"),
+  "background-": map-get($-color, "reverse"),
 );
