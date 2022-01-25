@@ -4,16 +4,18 @@
 @mixin wrapper {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 300px auto auto 200px 100px;
-  grid-template-areas: "header" "favorites" "stations" "footer" "player";
+  grid-template-rows: 100px 300px auto auto 200px;
+  grid-template-areas:  "." "header" "favorites" "stations" "footer";
 
   .header{ grid-area: header }
   .favorites { grid-area: favorites }
   .stations { grid-area: stations }
   .footer { grid-area: footer }
-  .player {
-    grid-area: player;
-    @include debug.border();
+  .stations {
+    min-height: 100vh;
+  }
+  .favorites {
+    min-height: 50vh;
   }
 }
 
@@ -24,23 +26,12 @@
    gap: 30px ;
 }
 
-@include layout.phone {
+@media screen {
   .wrapper {
     @include wrapper;
   }
   .stations {
     @include stations;
   }
-  .player {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    height: 100px;
-  }
-  .footer{
-    @include debug.border($color: green);
-  }
 }
-
-
 

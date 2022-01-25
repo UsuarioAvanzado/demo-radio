@@ -1,52 +1,83 @@
 import type { NextPage } from 'next' 
 import type { Station } from 'radio-browser-api'
-import { useState, useEffect } from "react"
-import { StationBlock, Loading, Head, ColorSchema, Navbar } from "@components"
-import style from './style.module.scss'
-import { useStream, useStoreState } from "@hooks";
-import { colorSchemaSelector } from "@store";
+import { RadioBrowserApi } from 'radio-browser-api'
+import { useState } from "react"
+import { StationBlock, Loading, Head, Navbar, MediaPlayer } from "@components"
+import styles from './style.module.scss'
+import { useStoreState } from "@hooks";
+import { selectors } from "@store";
 
 
 
-const Home: NextPage = () => {
-  const colorSchema = useStoreState(colorSchemaSelector)
-  const { response, error } = useStream()
-  const [ data, setData ] = useState<Station[]>()
+export async function getStaticProps(){
+  const api = new RadioBrowserApi("frontend demo")
+  const responseCountryCodes = await api.getCountryCodes()
+  const responseStations = await api.searchStations({
+    countryCode: 'CL',
+    hideBroken: true,
+    removeDuplicates: true,
+    order: "lastCheckTime"
+  })
+
+  const stations = JSON.stringify(responseStations)
+  const countryCodes = JSON.stringify(responseCountryCodes)
+  return {
+    props: {
+      data: {
+        stations,
+        countryCodes
+      }
+    }
+  }
+
+}
+
+interface StaticProps {
+  data: {
+    stations: string,
+    countryCodes: string
+  }
   
+}
+interface TemplateProps {
+  stations: Station[]
+}
 
-  useEffect(() => { 
-    setTimeout(() =>  setData(response) , 3000)
-  },[response])
-
-
-
-  if (error) return <Loading msg="Failed to load."/>
-  if (!data) return <Loading msg="Loading ..."/>
-
-  
+function Template(props: TemplateProps) {
+  const colorSchema = useStoreState(selectors.colorSchema)
   return (
-    <div className={`${style.wrapper} color-schema--${colorSchema}`}>
-      <Head/>
+      <div className={`${styles.wrapper} ${colorSchema}`}>
+        <Head/>
+        <Navbar/>
+        <MediaPlayer/>
 
-      <header className={`block ${style.header}`}>
-        <h1>Open Radio</h1>
-      </header>
-      <Navbar/>
-
-      <section className={`block ${style.favorites}`}>favoritos</section>
-      <section className={`block ${style.stations}`}>
-        { data.map((station: Station) => <StationBlock  key={station.id} {...station}/> )}
-      </section>
-
-      <section className={`block ${style.player}`}>
-        panel de control
-      </section>
-
-      <footer className={`block ${style.footer}`}>footer</footer>
-
-    </div>
-  )
+        <header className={`block content ${styles.header}`}>
+          <h1>Demo Radio</h1>
+        </header>
+        <section className={`block content ${styles.favorites}`}>Favoritos</section>
+        <section className={`block ${styles.stations}`}>
+          { 
+            props.stations.map((station) => <StationBlock  key={station.id} {...station}/> )
+          }
+        </section>
+        <footer className={`block ${styles.footer}`}>footer</footer>
+      </div>
+    )
 }
 
 
-export default Home
+const Page: NextPage<StaticProps> = (props) => {
+  let render: boolean = true
+  const [ stations ] = useState<Station[]>(JSON.parse(props.data.stations))
+
+  if (!render) {
+    return <Loading msg="loading"/>
+  }
+  else {
+    return <Template stations={stations}/>
+  }
+}
+
+
+export default Page
+
