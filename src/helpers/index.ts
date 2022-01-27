@@ -1,1 +1,1 @@
-export { checkImage } from "./img"
+export { sanitizeImageString, checkImage } from "./image"
