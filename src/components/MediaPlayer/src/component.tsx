@@ -52,7 +52,7 @@ function Wrapper(props: WrapperProps) {
       setPlaying(props.playing)
     } 
 
-  }, [props])
+  }, [props, station, stream])
 
   useEffect(()=>{
     playing ? setIcon('icon-pause'): setIcon('icon-play')
@@ -60,7 +60,7 @@ function Wrapper(props: WrapperProps) {
 
   useEffect(()=>{
     playing? stream.play(): stream.pause()
-  }, [playing, station])
+  }, [playing, stream])
 
     return (
       <section className={`block ${styles.wrapper}`} >
