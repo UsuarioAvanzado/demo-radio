@@ -1,15 +1,26 @@
-import type { Station } from "radio-browser-api";
+import type { Station } from "radio-browser-api"
 import styles from './style.module.scss';
 import { useStoreDispatch , useStoreState} from "@hooks";
-import { selectors } from "@store";
+import { selectors } from "@store"
 import type { MediaPlayerState } from '@store'
+import { useEffect, useState } from "react";
 
 export function Component( station: Station ) {
   const dispatch = useStoreDispatch()
   const mediaState = useStoreState<MediaPlayerState>(selectors.mediaPlayer)
+  const [ favicon, setFavicon ] = useState(station.favicon)
 
- 
-  function handler(){
+  useEffect(()=>{
+    if(!station.favicon){
+      setFavicon('/default/favicon.png')
+    }
+  }, [station.favicon])
+
+  const onError = ()=> {
+    setFavicon('/default/favicon.png')
+  }
+
+  const handler = ()=> {
    if(mediaState.station && mediaState.station.id == station.id) {
      dispatch({type: '@media/toggle'})
    } 
@@ -21,13 +32,16 @@ export function Component( station: Station ) {
   return (
     <div className={`${styles.wrapper} shadow`}>
       <section className={styles.info}>
-        <span className={`content ${styles.content}`}>{station.name}</span>
-        <span className={`content ${styles.content}`}>{station.urlResolved}</span>
-        <span className={`content ${styles.content}`}>radio info</span>
+        <span className={`content ${styles.name}`}>{station.name}</span>
+        <span className={`content ${styles.id}`}>{station.id}</span>
       </section>
-      <section className={styles.control}>
-        <span onClick={handler} className={styles.image_container}>
-          <img src={station.favicon} className={styles.image} alt="logo"/>
+      <section className={styles.control} onClick={handler}>
+        <span className={styles.image_container}>
+          <img 
+          src={favicon} 
+          className={styles.image} 
+          alt="logo"
+          onError={onError}/>
         </span>
       </section>
     </div>
