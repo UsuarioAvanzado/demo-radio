@@ -11,21 +11,19 @@ import { selectors } from "@store";
 
 export async function getStaticProps(){
   const api = new RadioBrowserApi("frontend demo")
-  const responseCountryCodes = await api.getCountryCodes()
+  api.setBaseUrl('https://de1.api.radio-browser.info')
   const responseStations = await api.searchStations({
     countryCode: 'CL',
     hideBroken: true,
     removeDuplicates: true,
-    order: "lastCheckTime"
+
   })
 
   const stations = JSON.stringify(responseStations)
-  const countryCodes = JSON.stringify(responseCountryCodes)
   return {
     props: {
       data: {
-        stations,
-        countryCodes
+        stations
       }
     }
   }
