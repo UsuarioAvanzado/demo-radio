@@ -1,7 +1,7 @@
 import type { Station } from "radio-browser-api";
 
 export function checkImage(url: string) : boolean{
-    const expresion = /^(https:\/\/)*.*\.(jpeg|jpg|gif|png|ico)$/
+    const expresion = /^(https:\/\/)*.*\.(jpeg|jpg|gif|png|ico|svg)$/
     return (url.match(expresion) != null)
 }
 
