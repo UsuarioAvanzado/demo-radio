@@ -1,3 +1,4 @@
+export { Component as Layout } from './Layout'
 export { Component as MediaPlayer } from "./MediaPlayer"
 export { Component as StationBlock } from "./StationBlock"
 export { Component as Loading } from "./Loading"

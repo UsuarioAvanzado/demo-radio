@@ -1,0 +1,37 @@
+@use "layout";
+@use "debug";
+
+@mixin wrapper {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 100px 300px auto auto 200px;
+  grid-template-areas:  "." "header" "favorites" "stations" "footer";
+
+  .header{ grid-area: header }
+  .favorites { grid-area: favorites }
+  .stations { grid-area: stations }
+  .footer { grid-area: footer }
+  .stations {
+    min-height: 100vh;
+  }
+  .favorites {
+    min-height: 50vh;
+  }
+}
+
+@mixin stations {
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: space-around;
+   gap: 30px ;
+}
+
+@media screen {
+  .wrapper {
+    @include wrapper;
+  }
+  .stations {
+    @include stations;
+  }
+}
+
