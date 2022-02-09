@@ -1,4 +1,4 @@
-import { useEffect, useState, useMemo } from 'react'
+import { useEffect, useState, useMemo, useCallback } from 'react'
 import styles from './style.module.scss'
 import { useStoreState, useStoreDispatch } from "@hooks";
 import { selectors } from "@store";
@@ -16,6 +16,7 @@ interface WrapperProps {
 }
 
 
+
 function Wrapper(props: WrapperProps) {
   const dispatch = useStoreDispatch()
   const [ icon, setIcon ] = useState<string>('icon-pause')
@@ -28,24 +29,49 @@ function Wrapper(props: WrapperProps) {
     const audio = new Audio(station.urlResolved)
     audio.autoplay = false
     audio.preload = "none"
+    audio.volume = 0.3
     audio.load()
-
     return audio
   } , [station])
-
 
   const handler = () => {
       dispatch({type: '@media/toggle'})
   }
 
+  const playStream = useCallback( async ()=>{
+    const errorMessage = "Error al reproducir esta emisora"
+    try {
+      await stream.play()
+    }
+    catch {
+      if (stream.error != null){
+        switch(stream.error.code) {
+           case stream.error.MEDIA_ERR_ABORTED:
+             dispatch({type: '@notification/show', payload: errorMessage})
+           break
+           case stream.error.MEDIA_ERR_NETWORK:
+             dispatch({type: '@notification/show', payload: errorMessage})
+           break
+           case stream.error.MEDIA_ERR_DECODE:
+             dispatch({type: '@notification/show', payload: errorMessage})
+           break
+           case stream.error.MEDIA_ERR_SRC_NOT_SUPPORTED:
+            dispatch({type: '@notification/show', payload: errorMessage})
+
+           break
+        }
+
+      setTimeout(()=>{ dispatch({type: '@media/stop'})}, 5000)
+      }
+    }
+  },[stream, dispatch])
+
   useEffect(()=> {
     if(props.station.id != station.id){
-      console.log('son diferentes')
       stream.pause()
       stream.removeAttribute('src')
       stream.load()
       setStation(props.station)
-      setPlaying(props.playing)
       setPlaying(props.playing)
     } else {
 
@@ -59,8 +85,9 @@ function Wrapper(props: WrapperProps) {
   }, [playing])
 
   useEffect(()=>{
-    playing? stream.play(): stream.pause()
-  }, [playing, stream])
+    playing? playStream(): stream.pause()
+
+  }, [playing, stream, playStream])
 
     return (
       <section className={`block ${styles.wrapper}`} >
