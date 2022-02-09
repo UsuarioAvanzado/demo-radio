@@ -1,6 +1,6 @@
 import { useState } from "react";
 import type { Station } from '@helpers'
-import { StationBlock, Head, Navbar, MediaPlayer } from "@components"
+import { StationBlock, Head, Navbar, MediaPlayer, Notification } from "@components"
 import { useStoreState } from "@hooks";
 import { selectors } from "@store";
 import styles from './style.module.scss'
@@ -19,6 +19,7 @@ export function Component(props: Props) {
         <Head/>
         <Navbar/>
         <MediaPlayer/>
+        <Notification/>
         <header className={`block content ${styles.header}`}>
           <h1>Demo Radio</h1>
         </header>

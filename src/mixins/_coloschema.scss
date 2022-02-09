@@ -7,6 +7,7 @@
   $icon:  map-get($map, 'icon');
   $background : map-get($map, 'background');
   $background-: map-get($map, 'background-');
+  $notification: map-get($map, 'notification');
 
   .color-schema--#{$name}{
     .block {
@@ -32,6 +33,10 @@
       cursor: pointer;
     }
     .shadow {
+      box-shadow: 1px 3px 4px  #222;
+    }
+    .notification {
+      background-color: $notification;
       box-shadow: 1px 3px 4px  #222;
     }
   }

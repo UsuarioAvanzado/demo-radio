@@ -16,6 +16,7 @@ $light_theme: (
   "icon": map-get($-color, "green"),
   "background": map-get($-color, "light"),
   "background-": map-get($-color, "reverse"),
+  "notification": map-get($-color, "red")
 );
 
 $dark_theme: (
@@ -27,4 +28,5 @@ $dark_theme: (
   "icon": map-get($-color, "orange"),
   "background": map-get($-color, "dark"),
   "background-": map-get($-color, "reverse"),
+  "notification": map-get($-color, "red")
 );

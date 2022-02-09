@@ -1,0 +1,17 @@
+.container {
+  position: fixed;
+  z-index: 1000;
+  top: 110px;
+  left: 10px;
+  height: 50px;
+  width: 40%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px ;
+}
+
+.text {
+  color: #fff;
+  font-size: 18px;
+}

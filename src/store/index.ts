@@ -15,7 +15,9 @@ export type { MediaPlayerState } from './reducers'
 
 const colorSchema = (state: StoreState) => state.colorSchema.theme
 const mediaPlayer = (state: StoreState) => state.mediaPlayer
+const notification = (state: StoreState) => state.notification
 export const selectors = {
  colorSchema: colorSchema,
- mediaPlayer: mediaPlayer
+ mediaPlayer: mediaPlayer,
+ notification: notification
 }
